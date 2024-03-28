@@ -1,0 +1,33 @@
+#cloud-config
+autoinstall:
+  version: 1
+  locale: en_US
+  # keyboard:
+  #   layout: en
+  ssh:
+    install-server: true
+    allow-pw: true
+    disable_root: true
+    ssh_quiet_keygen: true
+    allow_public_ssh_keys: true
+  packages:
+    - qemu-guest-agent
+    - sudo
+  storage:
+    layout:
+      name: direct
+    swap:
+      size: 0
+  user-data:
+    package_upgrade: false
+    timezone: Europe/Moscow
+    users:
+      - name: sergey
+        groups: [adm, sudo]
+        lock-passwd: false
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        shell: /bin/bash
+        # passwd: your-password
+        # - or -
+        ssh_authorized_keys:
+          -  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBeno92zSvQJmkRUKWn0LaMxH5bDCRE3bQHFv2Caz4vwoNITski/gOcHJ4t974RS6LJCa82ag+i4UYrgf88bwPuXb8phPXI/gwWKdb7gFWOnC3buEQW2ZluKlGA0V5wK7RdUsSRVpHELbovpSW/JVvqlPHNEGP+spnPZGFTL4djl23uH4E1k6XLgcsImfiOwNXBLbwCPE4uKCxxzA1/PXxcz4/T61XG0B9jytlwCJF1U+uUZEkHn8hS63PIwVXuLjzo3hH25ErtwJECYwyaEBQD4tstFoKAB3zKgKXv//W2L5S+bkJ3xA38DZv1HO8Y3R57WEfWxW3Z3MBcbgF1DBJ sergey@sergeys-iMac.local
